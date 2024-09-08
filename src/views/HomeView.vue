@@ -1,18 +1,62 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="homeview">
+    <div class="frame">
+      <div class="component-container left-container">
+        <OtherPage />
+      </div>
+      <div class="component-container right-container">
+        <SearchComponent />
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script>
+import OtherPage from '../components/OtherPage.vue';
+import SearchComponent from '../components/SearchComponent.vue';
 
-@Options({
+export default {
+  name: 'HomeView',
   components: {
-    HelloWorld,
+    OtherPage,
+    SearchComponent,
   },
-})
-export default class HomeView extends Vue {}
+};
 </script>
+
+<style scoped>
+.homeview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.frame {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  border-radius: 16px;
+  border-collapse: separate;
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, rgb(205, 87, 87), rgb(208, 190, 156)) 1;
+  background: transparent;
+  display: flex;
+  overflow: hidden; /* Ensure contents don't overflow the frame */
+}
+
+.component-container {
+  flex: 1; /* Each container takes up 50% of the frame */
+  display: flex;
+}
+
+.left-container {
+  border-right: 2px solid rgb(234, 60, 25); /* Add a right border to separate the two components */;
+  box-sizing: border-box; /* Include border in width/height calculations */
+}
+
+.right-container {
+  box-sizing: border-box; /* Include border in width/height calculations */
+}
+</style>

@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import OtherPage from '../components/OtherPage.vue';
+import OtherPage from '../components/OtherPage/OtherPage.vue';
 import SearchComponent from '../components/SearchComponent.vue';
+import NavbarComponent from '../components/Navbar/NavbarComponent.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,6 +17,10 @@ const routes: Array<RouteRecordRaw> = [
    { path: '/search',
     name:  'SearchComponent',
     component: SearchComponent
+   },
+   { path: '/navbar',
+    name:  'NavbarComponent',
+    component: NavbarComponent
    },
 ]
 

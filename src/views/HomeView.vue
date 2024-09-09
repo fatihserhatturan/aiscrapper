@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import OtherPage from '../components/OtherPage.vue';
+import OtherPage from '../components/OtherPage/OtherPage.vue';
 import SearchComponent from '../components/SearchComponent.vue';
 
 export default {
@@ -49,6 +49,9 @@ export default {
 .component-container {
   flex: 1; /* Each container takes up 50% of the frame */
   display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Add these styles to ensure the content inside is centered */
 }
 
 .left-container {

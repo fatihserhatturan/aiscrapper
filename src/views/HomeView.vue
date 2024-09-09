@@ -40,26 +40,26 @@ export default {
   border-radius: 16px;
   border-collapse: separate;
   border: 2px solid transparent;
-  border-image: linear-gradient(135deg, rgb(205, 87, 87), rgb(208, 190, 156)) 1;
+  border-image: linear-gradient(135deg, rgb(18, 20, 158), rgb(33, 109, 175)) 1;
   background: transparent;
   display: flex;
-  overflow: hidden; /* Ensure contents don't overflow the frame */
+  overflow: hidden;
 }
 
 .component-container {
-  flex: 1; /* Each container takes up 50% of the frame */
+  flex: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Add these styles to ensure the content inside is centered */
+
 }
 
 .left-container {
-  border-right: 2px solid rgb(234, 60, 25); /* Add a right border to separate the two components */;
-  box-sizing: border-box; /* Include border in width/height calculations */
+  border-right: 2px solid rgb(18, 20, 158);
+  box-sizing: border-box; 
 }
 
 .right-container {
-  box-sizing: border-box; /* Include border in width/height calculations */
+  box-sizing: border-box; 
 }
 </style>

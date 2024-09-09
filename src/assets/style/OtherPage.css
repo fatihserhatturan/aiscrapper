@@ -34,6 +34,12 @@
   margin-bottom: 20px;
   margin-left: 0px;
 }
+.inspect-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: -430px;
+  margin-top: 20px; 
+}
 
 .card {
   position: relative;
@@ -46,7 +52,7 @@
   overflow: hidden;
   z-index: 10;
   transform-origin: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .collapsed {

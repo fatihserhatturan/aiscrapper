@@ -78,18 +78,18 @@ nav {
 }
 
 .logo {
-  height: 60px; /* Logonun boyutunu buradan ayarlayabilirsiniz */
+  height: 60px; 
   width: auto;
-  filter: brightness(0) invert(1); /* Logo rengini beyaz yapar */
+  filter: brightness(0) invert(1); 
 }
 
 .brand-name {
   color: white;
   margin-left: 10px;
   font-family: "Handjet", sans-serif;
-  font-size: 2.5rem; /* Yazı tipi boyutu */
-  font-weight: 400; /* Yazı tipi kalınlığı */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Yazıya gölge efekti */
+  font-size: 2.5rem; 
+  font-weight: 400; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 </style>
 

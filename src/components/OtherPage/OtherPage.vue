@@ -52,8 +52,8 @@
 </template>
 
 <script>
-import OtherPage from './OtherPage.ts'; 
-import '@/assets/style/OtherPage.css'; 
+import OtherPage from './OtherPage.ts';
+import '@/assets/style/OtherPage.css';
 export default OtherPage;
 </script>
 

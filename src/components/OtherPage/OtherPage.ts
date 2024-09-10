@@ -1,12 +1,13 @@
 import { defineComponent } from 'vue';
+import {scrapePage} from '../../BaseFunctions/ScrapStart';
 
-export default defineComponent({
+export  default defineComponent({
   name: 'OtherPage',
   data() {
     return {
-      isExpanded: false, // Card expansion state
-      iframeUrlInput: '', // Input field for the URL
-      currentIframeUrl: '', 
+      isExpanded: false,
+      iframeUrlInput: '',
+      currentIframeUrl: '',
 
     };
   },
@@ -19,9 +20,9 @@ export default defineComponent({
         this.currentIframeUrl = this.iframeUrlInput;
       }
     },
-    InspectURL() {
+    async InspectURL() {
       const url = this.currentIframeUrl;
-      console.log(url);
+      await scrapePage(url);
     },
   },
 });

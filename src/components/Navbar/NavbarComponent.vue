@@ -1,5 +1,5 @@
 <template>
-  <nav class="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 h-16 flex justify-between items-center px-4 w-full">
+  <nav class="navbar">
     <div class="flex items-center">
       <img src="@/assets/logostalker.png" alt="Logo" class="logo">
       <h1 class="brand-name">STALKER</h1>
@@ -26,70 +26,55 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-nav {
-  width: 100%;
-  background-size: 400% 400%;
-  animation: gradientAnimation 8s ease infinite;
-}
-
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.neon-button {
-  font-family: 'Poppins', sans-serif;
-  padding: 0.5rem 1rem;
-  border: 2px solid transparent;
-  clip-path: polygon(15% 0, 85% 0, 100% 100%, 0% 100%);
-  background-color: transparent;
-  color: white;
-  transition: all 0.3s ease-in-out;
+.navbar {
+  font-family: 'Handjet', sans-serif;
+  background: linear-gradient(135deg, rgba(52, 73, 94, 0.7), rgba(30, 0, 255, 0.7));
+  border-bottom: 2px solid #ff00aa; /* Match sidebar's punk-style border */
+  box-shadow: 0px 0px 15px rgba(255, 0, 150, 0.7); /* Glowing effect */
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
   position: relative;
-  overflow: hidden;
-  outline: none;
-  cursor: pointer;
-}
-
-.neon-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 0 0 6px 6px;
-}
-
-.neon-button:hover::before {
-  opacity: 1;
-}
-
-.neon-button:hover {
-  transform: scale(1.05);
-  color: #FFF;
-  border-color: #FFF;
-}
-
-.logo {
-  height: 60px; 
-  width: auto;
-  filter: brightness(0) invert(1); 
+  width: 100%;
+  height: 50px;
+  font-family: 'Press Start 2P', cursive; /* Retro font */
 }
 
 .brand-name {
-  color: white;
   margin-left: 10px;
-  font-family: "Handjet", sans-serif;
-  font-size: 2.5rem; 
-  font-weight: 400; 
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.5em;
+  text-shadow: 2px 2px 0px #ff00aa, -2px -2px 0px #00ffcc; /* Punk-style shadow */
 }
-</style>
 
+/* Button styles */
+.neon-button {
+  background-color: transparent;
+  border: 2px solid #ff00aa;
+  color: #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-shadow: 2px 2px 0px #ff00aa, -2px -2px 0px #00ffcc; /* Punk-style shadow */
+  transition: transform 0.2s ease-in-out, background 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+
+.neon-button:hover {
+  background: rgba(52, 152, 219, 0.8);
+  color: #00ffcc;
+  border-color: #1abc9c;
+  transform: scale(1.1);
+  text-shadow: 3px 3px 5px #000;
+}
+
+/* Image logo styling */
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+</style>

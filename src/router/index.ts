@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import OtherPage from '../components/OtherPage/OtherPage.vue';
-import SearchComponent from '../components/SearchComponent.vue';
+import SearchComponent from '../components/SearchComponent/SearchComponent.vue';
 import NavbarComponent from '../components/Navbar/NavbarComponent.vue';
 import SidebarComponent from '../components/Sidebar/SidebarComponent.vue';
 

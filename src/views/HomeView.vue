@@ -13,7 +13,7 @@
 
 <script>
 import OtherPage from '../components/OtherPage/OtherPage.vue';
-import SearchComponent from '../components/SearchComponent.vue';
+import SearchComponent from '../components/SearchComponent/SearchComponent.vue';
 
 export default {
   name: 'HomeView',
@@ -47,19 +47,18 @@ export default {
 }
 
 .component-container {
-  flex: 1; 
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
 
 }
 
 .left-container {
   border-right: 2px solid rgb(18, 20, 158);
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .right-container {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 </style>

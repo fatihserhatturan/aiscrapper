@@ -34,4 +34,25 @@ export default {
   margin-left: 15%; /* Adjusted for the new sidebar width */
   padding: 30px;
 }
+/* Global scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;  /* Scrollbar genişliği */
+  height: 10px; /* Yatay scrollbar yüksekliği */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;  /* Scrollbar track rengi */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;  /* Scrollbar thumb rengi */
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;  /* Hover durumunda thumb rengi */
+}
+
 </style>

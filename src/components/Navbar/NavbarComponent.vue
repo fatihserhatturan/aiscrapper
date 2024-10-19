@@ -1,17 +1,17 @@
 <template>
   <nav class="navbar">
-    <div class="flex items-center">
+    <div class="flex items-center gap-3">
       <img src="@/assets/logostalker.png" alt="Logo" class="logo">
       <h1 class="brand-name">STALKER</h1>
     </div>
-    <div>
-      <button class="neon-button">
+    <div class="flex gap-4">
+      <button class="nav-button">
         Home
       </button>
-      <button class="neon-button">
+      <button class="nav-button">
         About
       </button>
-      <button class="neon-button">
+      <button class="nav-button">
         Contact
       </button>
     </div>
@@ -25,56 +25,103 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
 
 .navbar {
-  font-family: 'Handjet', sans-serif;
-  background: linear-gradient(135deg, rgba(52, 73, 94, 0.7), rgba(30, 0, 255, 0.7));
-  border-bottom: 2px solid #ff00aa; /* Match sidebar's punk-style border */
-  box-shadow: 0px 0px 15px rgba(255, 0, 150, 0.7); /* Glowing effect */
-  padding: 15px;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(
+    to right,
+    rgba(29, 78, 216, 0.95),
+    rgba(30, 64, 175, 0.95)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
-  position: relative;
+  position: fixed;
   width: 100%;
-  height: 50px;
-  font-family: 'Press Start 2P', cursive; /* Retro font */
+  height: 64px;
+  z-index: 50;
+  backdrop-filter: blur(8px);
 }
 
 .brand-name {
-  margin-left: 10px;
-  font-size: 1.5em;
-  text-shadow: 2px 2px 0px #ff00aa, -2px -2px 0px #00ffcc; /* Punk-style shadow */
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #ffffff 0%, #a5f3fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Button styles */
-.neon-button {
-  background-color: transparent;
-  border: 2px solid #ff00aa;
-  color: #fff;
-  padding: 10px 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  text-shadow: 2px 2px 0px #ff00aa, -2px -2px 0px #00ffcc; /* Punk-style shadow */
-  transition: transform 0.2s ease-in-out, background 0.5s ease-in-out, border 0.5s ease-in-out;
+.nav-button {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+  background: transparent;
+  border: none;
+  position: relative;
 }
 
-.neon-button:hover {
-  background: rgba(52, 152, 219, 0.8);
-  color: #00ffcc;
-  border-color: #1abc9c;
-  transform: scale(1.1);
-  text-shadow: 3px 3px 5px #000;
+.nav-button::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background: #60a5fa;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-50%);
 }
 
-/* Image logo styling */
+.nav-button:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-button:hover::after {
+  width: 80%;
+}
+
+.nav-button:active {
+  transform: translateY(1px);
+}
+
 .logo {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  transition: opacity 0.2s ease-in-out;
 }
 
+.logo:hover {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.813rem;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
+}
 </style>

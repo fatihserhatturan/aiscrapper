@@ -5,10 +5,10 @@ import './index.css'
 // Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
+import { faExpand, faCompress, faClapperboard,faPager, faEye, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 // Kullanacağın ikonları kütüphaneye ekle
-library.add(faExpand, faCompress);
+library.add(faExpand, faCompress, faClapperboard, faPager, faEye, faMagnifyingGlass);
 
 createApp(App)
 .component('font-awesome-icon', FontAwesomeIcon)

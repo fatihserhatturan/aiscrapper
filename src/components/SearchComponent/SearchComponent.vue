@@ -1,51 +1,78 @@
 <template>
-  <div class="search-component">
+  <div class="ai-analysis-component">
     <div class="galaxy-background"></div>
-    <div class="content-wrapper">
-      <h1 class="title">AI Analysis</h1>
-      <div class="steps-container">
-        <div v-for="(text, index) in textAreas" :key="index" class="typewriter-container">
-          <div class="step-number">{{ index + 1 }}</div>
-          <div class="text-content">
-            <div class="typewriter-text" :class="{ 'completed': text.isCompleted }">
-              {{ text.displayText }}
-              <span v-if="text.isTyping" class="cursor">|</span>
-            </div>
-            <div v-if="text.isLoading" class="loading-animation">
-              <div class="spinner"></div>
-            </div>
-            <div v-if="text.isCompleted" class="completion-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tick-icon">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
+    <transition name="fade" mode="out-in">
+      <div v-if="!isVisible" key="intro" class="intro-content">
+        <h1 class="intro-title">AI-Powered Document Analysis</h1>
+        <p class="intro-text">
+          Welcome to our cutting-edge AI Document Analysis tool. Harness the power of advanced artificial intelligence to generate comprehensive, detailed, and business-oriented documentation for any webpage. Our state-of-the-art AI doesn't just scrape the surface; it delves deep into the structure, content, and functionality of web pages to produce unparalleled insights.
+        </p>
+        <p class="intro-text">
+          Whether you're a developer seeking to understand a competitor's site architecture, a UX designer looking for inspiration, or a business analyst requiring in-depth website documentation, our tool delivers results that exceed expectations. Experience the future of web analysis - where accuracy meets efficiency, and depth meets clarity.
+        </p>
+      </div>
+      <div v-else key="analysis" class="analysis-content">
+        <h1 class="title">AI Analysis in Progress</h1>
+        <div class="steps-container">
+          <div v-for="(text, index) in textAreas" :key="index" class="typewriter-container">
+            <div class="step-number">{{ index + 1 }}</div>
+            <div class="text-content">
+              <div class="typewriter-text" :class="{ 'completed': text.isCompleted }">
+                {{ text.displayText }}
+                <span v-if="text.isTyping" class="cursor">|</span>
+              </div>
+              <div v-if="text.isLoading" class="loading-animation">
+                <div class="spinner"></div>
+              </div>
+              <div v-if="text.isCompleted" class="completion-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tick-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import emitter from '../../eventBus'; // Ensure this path is correct
+
 export default {
-  name: 'SearchComponent',
+  name: 'AIAnalysisComponent',
   data() {
     return {
+      isVisible: false,
       textAreas: [
-        { fullText: 'All elements, events and event components on the page are examined...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
-        { fullText: 'I listen to all network events on the page and perform detailed analysis of network traffic', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
-        { fullText: 'Taking a screenshot of the page', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
-        { fullText: 'Configuring the request to obtain the Lighthouse performance report', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
-        { fullText: 'All data obtained is combined and a report is generated as per your request.', displayText: '', isTyping: false, isLoading: false, isCompleted: false }
+        { fullText: 'Examining all elements, events, and event components on the page...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
+        { fullText: 'Listening to all network events and performing detailed analysis of network traffic...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
+        { fullText: 'Capturing a high-resolution screenshot of the page...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
+        { fullText: 'Configuring and executing Lighthouse performance report...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
+        { fullText: 'Aggregating all data and generating a comprehensive report as per your specifications...', displayText: '', isTyping: false, isLoading: false, isCompleted: false }
       ],
-      typingSpeed: 50,
-      delayBetweenTexts: 500,
+      typingSpeed: 80,
+      delayBetweenTexts: 1000,
     };
   },
   mounted() {
-    this.startAllTypewriters();
+    emitter.on('inspectionStarted', this.toggleVisibility);
+  },
+  beforeUnmount() {
+    emitter.off('inspectionStarted', this.toggleVisibility);
   },
   methods: {
+    toggleVisibility() {
+      this.isVisible = !this.isVisible;
+      if (this.isVisible) {
+        this.$nextTick(() => {
+          this.startAllTypewriters();
+        });
+      } else {
+        this.resetTypewriters();
+      }
+    },
     startAllTypewriters() {
       this.textAreas.forEach((text, index) => {
         setTimeout(() => {
@@ -78,14 +105,22 @@ export default {
     calculateTypingDuration(text) {
       return text.length * this.typingSpeed;
     },
+    resetTypewriters() {
+      this.textAreas.forEach(text => {
+        text.displayText = '';
+        text.isTyping = false;
+        text.isLoading = false;
+        text.isCompleted = false;
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
-.search-component {
+.ai-analysis-component {
   position: relative;
-  height: 100%;
+  height: 100vh;
   font-family: 'Roboto', sans-serif;
   color: #ffffff;
   overflow: hidden;
@@ -111,25 +146,40 @@ export default {
   100% { background-position: 0% 50%; }
 }
 
-.content-wrapper {
+.intro-content, .analysis-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  align-items: center;
+  padding: 40px;
   overflow-y: auto;
 }
 
-.title {
-  text-align: center;
-  font-size: 1.8em;
-  margin-bottom: 20px;
+.intro-title, .title {
+  font-size: 2.5em;
+  margin-top: 20px; /* Added margin-top */
+  margin-bottom: 30px;
   color: #61dafb;
   text-shadow: 0 0 10px rgba(97, 218, 251, 0.7);
+  text-align: center;
+}
+
+.intro-text-container {
+  max-width: 800px;
+  width: 100%;
+}
+
+.intro-text {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: justify;
 }
 
 .steps-container {
-  flex-grow: 1;
-  overflow-y: auto;
+  width: 100%;
+  max-width: 800px;
 }
 
 .typewriter-container {
@@ -221,5 +271,19 @@ export default {
 .completed {
   color: #61dafb;
   text-shadow: 0 0 5px rgba(97, 218, 251, 0.5);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease-in-out;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

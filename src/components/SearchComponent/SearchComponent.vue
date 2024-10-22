@@ -21,10 +21,10 @@
                 {{ text.displayText }}
                 <span v-if="text.isTyping" class="cursor">|</span>
               </div>
-              <div v-if="text.isLoading" class="loading-animation">
+              <div v-if="text.isLoading && (!buttonVisible || index !== textAreas.length - 1)" class="loading-animation">
                 <div class="spinner"></div>
               </div>
-              <div v-if="text.isCompleted" class="completion-icon">
+              <div v-if="text.isCompleted || (buttonVisible && index === textAreas.length - 1)" class="completion-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tick-icon">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
@@ -32,89 +32,17 @@
             </div>
           </div>
         </div>
+        <button v-if="buttonVisible" class="show-document-button" @click="showDocument">
+          Show Document
+        </button>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-import emitter from '../../eventBus'; // Ensure this path is correct
-
-export default {
-  name: 'AIAnalysisComponent',
-  data() {
-    return {
-      isVisible: false,
-      textAreas: [
-        { fullText: 'Examining all elements, events, and event components on the page...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
-        { fullText: 'Listening to all network events and performing detailed analysis of network traffic...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
-        { fullText: 'Capturing a high-resolution screenshot of the page...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
-        { fullText: 'Configuring and executing Lighthouse performance report...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
-        { fullText: 'Aggregating all data and generating a comprehensive report as per your specifications...', displayText: '', isTyping: false, isLoading: false, isCompleted: false }
-      ],
-      typingSpeed: 80,
-      delayBetweenTexts: 1000,
-    };
-  },
-  mounted() {
-    emitter.on('inspectionStarted', this.toggleVisibility);
-  },
-  beforeUnmount() {
-    emitter.off('inspectionStarted', this.toggleVisibility);
-  },
-  methods: {
-    toggleVisibility() {
-      this.isVisible = !this.isVisible;
-      if (this.isVisible) {
-        this.$nextTick(() => {
-          this.startAllTypewriters();
-        });
-      } else {
-        this.resetTypewriters();
-      }
-    },
-    startAllTypewriters() {
-      this.textAreas.forEach((text, index) => {
-        setTimeout(() => {
-          this.startTypewriter(index);
-        }, index * (this.calculateTypingDuration(text.fullText) + this.delayBetweenTexts));
-      });
-    },
-    startTypewriter(index) {
-      const text = this.textAreas[index];
-      text.isTyping = true;
-      text.isLoading = true;
-      let i = 0;
-      const typeNextLetter = () => {
-        if (i < text.fullText.length) {
-          text.displayText += text.fullText.charAt(i);
-          i++;
-          setTimeout(typeNextLetter, this.typingSpeed);
-        } else {
-          this.finishTyping(index);
-        }
-      };
-      typeNextLetter();
-    },
-    finishTyping(index) {
-      const text = this.textAreas[index];
-      text.isTyping = false;
-      text.isLoading = false;
-      text.isCompleted = true;
-    },
-    calculateTypingDuration(text) {
-      return text.length * this.typingSpeed;
-    },
-    resetTypewriters() {
-      this.textAreas.forEach(text => {
-        text.displayText = '';
-        text.isTyping = false;
-        text.isLoading = false;
-        text.isCompleted = false;
-      });
-    },
-  },
-};
+import SearchComponent from './SearchComponent.ts';
+export default SearchComponent;
 </script>
 
 <style scoped>
@@ -250,7 +178,32 @@ export default {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+.show-document-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+.show-document-button:hover {
+  background-color: #4fa8d5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.show-document-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .completion-icon {
   margin-left: 8px;
   animation: popIn 0.5s cubic-bezier(0.26, 0.53, 0.74, 1.48);

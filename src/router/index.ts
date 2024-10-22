@@ -4,6 +4,7 @@ import OtherPage from '../components/OtherPage/OtherPage.vue';
 import SearchComponent from '../components/SearchComponent/SearchComponent.vue';
 import NavbarComponent from '../components/Navbar/NavbarComponent.vue';
 import SidebarComponent from '../components/Sidebar/SidebarComponent.vue';
+import DocumentComponent from '../components/Document/DocumentComponent.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,6 +27,10 @@ const routes: Array<RouteRecordRaw> = [
    { path: '/sidebar',
     name:  'SidebarComponent',
     component: SidebarComponent
+   },
+   { path: '/document',
+    name:  'DocumentComponent',
+    component: DocumentComponent
    },
 ]
 

@@ -14,6 +14,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "core-js": "^3.8.3",
+    "docx": "^9.0.2",
+    "file-saver": "^2.0.5",
     "mitt": "^3.0.1",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",

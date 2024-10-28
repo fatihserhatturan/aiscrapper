@@ -9,7 +9,7 @@ export async function scrapePage(url: string) {
     const response = await axios.get('http://localhost:3000/scrape', {
       params: { url: url }
     });
-    scrapedContent = response.data;
+    scrapedContent = response.data.documentId;
     return scrapedContent;
   } catch (error) {
     console.error('Sayfa içeriğini kazıma hatası:', error);

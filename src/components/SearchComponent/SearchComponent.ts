@@ -7,6 +7,7 @@ export default defineComponent({
     return {
       isVisible: false,
       buttonVisible: false,
+      documentId: '',
       textAreas: [
         { fullText: 'Examining all elements, events, and event components on the page...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
         { fullText: 'Listening to all network events and performing detailed analysis of network traffic...', displayText: '', isTyping: false, isLoading: false, isCompleted: false },
@@ -20,7 +21,12 @@ export default defineComponent({
   },
   mounted() {
     emitter.on('inspectionStarted', this.toggleVisibility);
-    emitter.on('inspectionFinished', this.toggleButton);
+
+    emitter.on('inspectionFinished', (scrapedContentId) => {
+      this.toggleButton();
+      this.documentId = `${scrapedContentId}`;
+  });
+
   },
   beforeUnmount() {
     emitter.off('inspectionStarted', this.toggleVisibility);
@@ -82,8 +88,12 @@ export default defineComponent({
       });
     },
     showDocument() {
-      
-      console.log('Show document clicked');
-    },
+      this.$router.push({
+          name: 'DocumentPreview',
+          params: {
+              documentId: this.documentId
+          }
+      });
+  },
   },
 });

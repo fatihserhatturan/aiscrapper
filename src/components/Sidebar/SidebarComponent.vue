@@ -2,13 +2,21 @@
   <div class="sidebar">
     <div class="sidebar-content">
       <ul class="sidebar-menu">
-        <li class="menu-item">
-          <span class="menu-icon"><font-awesome-icon :icon="['fa', 'pager']" /></span>
-          Page Base Document
+        <li class="menu-item" @click="navigateTo('/')">
+          <router-link to="/" class="menu-link">
+            <span class="menu-icon">
+              <font-awesome-icon :icon="['fa', 'pager']" />
+            </span>
+            Page Base Document
+          </router-link>
         </li>
-        <li class="menu-item">
-          <span class="menu-icon"><font-awesome-icon :icon="['fas', 'clapperboard']" /></span>
-          Scenario Document
+        <li class="menu-item" @click="navigateTo('/scenario')">
+          <router-link to="/scenario" class="menu-link">
+            <span class="menu-icon">
+              <font-awesome-icon :icon="['fas', 'clapperboard']" />
+            </span>
+            Scenario Document
+          </router-link>
         </li>
       </ul>
     </div>
@@ -16,9 +24,22 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
+
 export default {
-  name: 'SidebarComponent'
-};
+  name: 'SidebarComponent',
+  setup() {
+    const router = useRouter()
+
+    const navigateTo = (path) => {
+      router.push(path)
+    }
+
+    return {
+      navigateTo
+    }
+  }
+}
 </script>
 
 <style scoped>

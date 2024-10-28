@@ -23,12 +23,12 @@ export default defineComponent({
     async InspectURL() {
       const url = this.currentIframeUrl;
       emitter.emit('inspectionStarted', true);
-      const scrapedContent = await scrapePage(url);
-      console.log('Scraped content:', scrapedContent);
-      //const documentId = scrapedContent?.documentId;
+      const scrapedContentId = await scrapePage(url);
+      console.log('Scraped content:', scrapedContentId);
 
-      if (scrapedContent != null) {
-        emitter.emit('inspectionFinished');
+      if (scrapedContentId != null) {
+        console.log('inspectionFinished');
+        emitter.emit('inspectionFinished', scrapedContentId);
       }
 
     },

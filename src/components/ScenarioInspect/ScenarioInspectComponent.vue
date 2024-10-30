@@ -52,24 +52,50 @@
     </div>
   </template>
 
-  <script>
-  export default {
-    name: 'ScenarioInspectComponent',
-    data() {
-      return {
-        inspectUrl: ''
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'ScenarioInspectComponent',
+  data() {
+    return {
+      inspectUrl: '',
+      loading: false,
+      error: null,
+      result: null
+    }
+  },
+  methods: {
+    async startInspect() {
+      if (!this.inspectUrl) {
+        return;
       }
-    },
-    methods: {
-      startInspect() {
-        if (this.inspectUrl) {
-          console.log('Starting inspection for URL:', this.inspectUrl);
-          // Add your inspection logic here
-        }
+
+      this.loading = true;
+      this.error = null;
+      this.result = null;
+
+      try {
+        const response = await axios.post('http://localhost:3004/api/record', {
+          url: this.inspectUrl
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        console.log('Inspection result:', response.data);
+
+      } catch (error) {
+        this.error = error.response?.data?.message || error.message;
+        console.error('Inspection failed:', error);
+      } finally {
+        this.loading = false;
       }
     }
   }
-  </script>
+}
+</script>
 
   <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');

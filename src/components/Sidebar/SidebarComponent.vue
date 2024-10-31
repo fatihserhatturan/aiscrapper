@@ -1,6 +1,9 @@
 <template>
-  <div class="sidebar">
-    <div class="sidebar-content">
+  <div class="toggle-icon" @click="$emit('toggle-sidebar')">
+    <font-awesome-icon :icon="['fas', 'bars']" />  
+  </div>
+  <div class="sidebar"  :class="{ 'sidebar-closed': !isOpen }">
+    <div class="sidebar-content" v-if="isOpen">
       <ul class="sidebar-menu">
         <li class="menu-item" @click="navigateTo('/')">
           <router-link to="/" class="menu-link">
@@ -18,6 +21,23 @@
             Scenario Document
           </router-link>
         </li>
+        <li class="menu-item">
+          <router-link to="/scenario-document-pw">
+            <span class="menu-icon">
+              <font-awesome-icon :icon="['fas', 'clapperboard']" />
+            </span>
+            Playwrite ile Doküman Oluşturma
+          </router-link>
+        </li>
+
+        <li class="menu-item">
+          <router-link to="/scenario-document-no-pw">
+            <span class="menu-icon">
+              <font-awesome-icon :icon="['fas', 'file-lines']" />
+            </span>
+            Kullanıcı Etkileşim Logları ile Doküman Oluşturma
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>
@@ -28,6 +48,12 @@ import { useRouter } from 'vue-router'
 
 export default {
   name: 'SidebarComponent',
+  props:{
+    isOpen: {
+      type: Boolean,
+      default: true
+    }
+  },
   setup() {
     const router = useRouter()
 
@@ -61,16 +87,45 @@ export default {
   z-index: 40;
 }
 
+.sidebar-closed {
+  width: 0;
+  overflow: hidden;
+}
+
+.toggle-icon {
+  color: #1380d3;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: fixed;
+  top: 70px; /* Navbar altında konumlandırır */
+  left: 10px; /* Sol tarafta tutar */
+  z-index: 50; /* Sidebar'ın önünde gösterir */
+}
+
+.toggle-icon:hover {
+  color: #2563eb; /* Hover durumunda ikon rengini değiştirir */
+}
+
+.sidebar-closed .sidebar-content {
+  opacity: 0;
+}
+
 .sidebar-content {
   padding: 1.5rem 1rem;
   height: 100%;
   overflow-y: auto;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.sidebar-closed .sidebar-content {
+  opacity: 0;
 }
 
 .sidebar-menu {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-top:20px;
 }
 
 .menu-item {
@@ -88,6 +143,8 @@ export default {
   background: transparent;
   position: relative;
   overflow: hidden;
+  height: 80px;
+  width: 100%;
 }
 
 .menu-icon {

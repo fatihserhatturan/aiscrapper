@@ -8,6 +8,8 @@ import SidebarComponent from '../components/Sidebar/SidebarComponent.vue';
 import DocumentComponent from '../components/Document/DocumentComponent.vue';
 import ScenarioInspectComponent from '../components/ScenarioInspect/ScenarioInspectComponent.vue';
 import ScenarioDocumentComponent from '../components/ScenarioDocument/ScenarioDocumentComponent.vue';
+import ScenarioDocumentPW from '@/components/ScenarioDocumentPW/ScenarioDocumentPW.vue';
+import ScenarioDocumentNoPW from '@/components/ScenarioDocumentNoPW/ScenarioDocumentNoPW.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -38,6 +40,16 @@ const routes: Array<RouteRecordRaw> = [
     name:  'SearchComponent',
     component: SearchComponent
    },
+   {
+    path: '/scenario-document-pw',
+    name: 'ScenarioDocumentPW',
+    component: ScenarioDocumentPW
+  },
+  {
+    path: '/scenario-document-no-pw',
+    name: 'ScenarioDocumentNoPW',
+    component: ScenarioDocumentNoPW
+  },
    { path: '/navbar',
     name:  'NavbarComponent',
     component: NavbarComponent

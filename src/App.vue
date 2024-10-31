@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Navbar /> <!-- Navbar component -->
-    <Sidebar /> <!-- Sidebar component -->
-    <div class="content">
+    <Sidebar  :isOpen="isSidebarOpen" @toggle-sidebar="isSidebarOpen = !isSidebarOpen"/> <!-- Sidebar component -->
+    <div class="content" :class="{ 'content-shifted': isSidebarOpen }">
       <router-view/>
     </div>
   </div>
@@ -17,7 +17,12 @@ export default {
   components: {
     Navbar,
     Sidebar // Register Sidebar
-  }
+  },
+  data() {
+    return {
+      isSidebarOpen: true // Sidebar'ın başlangıç durumu açık
+    };
+  },
 };
 </script>
 
@@ -31,8 +36,12 @@ export default {
 }
 
 .content {
-  margin-left: 15%; /* Adjusted for the new sidebar width */
+  transition: margin-left 0.3s ease-in-out;
   padding: 30px;
+}
+
+.content-shifted {
+  margin-left: 280px; /* Sidebar açıkken içerik kayar */
 }
 /* Global scrollbar styles */
 ::-webkit-scrollbar {

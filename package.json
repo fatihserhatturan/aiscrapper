@@ -21,6 +21,7 @@
     "@tiptap/pm": "^2.9.1",
     "@tiptap/starter-kit": "^2.9.1",
     "@tiptap/vue-3": "^2.9.1",
+    "axios": "^1.7.7",
     "core-js": "^3.8.3",
     "docx": "^9.0.2",
     "dompurify": "^3.1.7",
@@ -46,6 +47,7 @@
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",

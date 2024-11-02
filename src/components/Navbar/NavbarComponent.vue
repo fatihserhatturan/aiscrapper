@@ -5,19 +5,8 @@
         <img src="@/assets/logostalker.png" alt="Logo" class="logo">
         <div class="logo-glow"></div>
         <div class="logo-particles">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
         </div>
       </div>
-    </div>
-    <div class="flex gap-4">
-      <button class="nav-button">Home</button>
-      <button class="nav-button">About</button>
-      <button class="nav-button">Contact</button>
     </div>
   </nav>
 </template>

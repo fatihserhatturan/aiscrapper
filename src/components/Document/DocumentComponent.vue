@@ -1,16 +1,18 @@
 <template>
-  <div class="markdown-container" :class="{ 'dark-mode': isDarkMode }">
-    <div class="toolbar">
-      <button class="toolbar-button" @click="toggleTheme" title="Temayı Değiştir">
-        <span v-if="isDarkMode"><font-awesome-icon :icon="['fas', 'sun']" /></span>
-        <span v-else><font-awesome-icon :icon="['fas', 'moon']" /></span>
-      </button>
-      <button class="toolbar-button" @click="exportToPDF" title="PDF olarak kaydet">
-        <font-awesome-icon :icon="['fas', 'file-pdf']" />
-      </button>
-    </div>
-    <div class="content-wrapper">
-      <div ref="markdownContent" class="markdown-content" v-html="compiledMarkdown"></div>
+  <div class="preview-wrapper">
+    <div class="markdown-container" :class="{ 'dark-mode': isDarkMode }">
+      <div class="toolbar">
+        <button class="toolbar-button" @click="toggleTheme" title="Temayı Değiştir">
+          <span v-if="isDarkMode"><font-awesome-icon :icon="['fas', 'sun']" /></span>
+          <span v-else><font-awesome-icon :icon="['fas', 'moon']" /></span>
+        </button>
+        <button class="toolbar-button" @click="exportToPDF" title="PDF olarak kaydet">
+          <font-awesome-icon :icon="['fas', 'file-pdf']" />
+        </button>
+      </div>
+      <div class="content-wrapper">
+        <div ref="markdownContent" class="markdown-content" v-html="compiledMarkdown"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -115,6 +117,17 @@ export default {
 
 
 <style>
+/* Add new wrapper styles for centered layout */
+.preview-wrapper {
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
 .markdown-container {
   --primary-color: #2563eb;
   --text-color: #1f2937;
@@ -126,14 +139,17 @@ export default {
   --table-header-bg: #f8fafc;
   --table-stripe-bg: #f1f5f9;
 
-  max-width: 100%;
-  margin: 0;
+  width: 76%; /* 100% - (12% * 2) for left and right margins */
+  margin: 0 auto;
   padding: 2rem;
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   transition: all 0.3s ease;
   position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  min-height: calc(100vh - 4rem);
 }
 
 .dark-mode {
@@ -148,6 +164,7 @@ export default {
   --table-stripe-bg: #1f2937;
 }
 
+/* Rest of the existing styles remain the same */
 .toolbar {
   position: sticky;
   top: 2rem;
@@ -181,9 +198,25 @@ export default {
 }
 
 .content-wrapper {
-  max-width: 768px;
-  margin: 0;  /* Margin'i 0'a ayarladık */
-  padding: 0 1rem;  /* Sağ ve sol padding ekledik */
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .preview-wrapper {
+    padding: 1rem;
+  }
+
+  .markdown-container {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .content-wrapper {
+    padding: 0 0.5rem;
+  }
 }
 
 .markdown-content {
@@ -249,7 +282,7 @@ export default {
 .markdown-content ol {
   padding-left: 1.5em;
   margin: 1em 0;
-  text-align: left;  /* Listeleri sola dayalı yaptık */
+  text-align: left;
 }
 
 .markdown-content ul {
@@ -263,7 +296,7 @@ export default {
 .markdown-content li {
   margin: 0.5em 0;
   position: relative;
-  text-align: left;  /* Liste öğelerini sola dayalı yaptık */
+  text-align: left;
 }
 
 .markdown-content .bullet-item::before {
@@ -278,7 +311,7 @@ export default {
   padding-left: 0.5em;
 }
 
-/* İç içe listeler için özel stil */
+
 .markdown-content ul ul,
 .markdown-content ol ol,
 .markdown-content ul ol,
@@ -286,14 +319,13 @@ export default {
   margin: 0.25em 0 0.25em 1.5em;
 }
 
-/* Kod bloğu stilleri */
 .markdown-content pre {
   background-color: var(--code-bg);
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1em 0;
   overflow-x: auto;
-  text-align: left;  /* Kod bloklarını sola dayalı yaptık */
+  text-align: left;
 }
 
 .markdown-content code {
@@ -304,7 +336,7 @@ export default {
   background-color: var(--code-bg);
 }
 
-/* Bağlantı stilleri */
+
 .markdown-content a {
   color: var(--link-color);
   text-decoration: none;
@@ -314,7 +346,7 @@ export default {
   text-decoration: underline;
 }
 
-/* Responsive tasarım */
+
 @media (max-width: 768px) {
   .markdown-container {
     padding: 1rem;
@@ -332,7 +364,7 @@ export default {
   }
 
   .content-wrapper {
-    padding: 0 0.5rem;  /* Mobil görünümde padding'i azalttık */
+    padding: 0 0.5rem;
   }
 }
 </style>

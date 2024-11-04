@@ -10,21 +10,21 @@
     font-weight: bold;
     margin-bottom: 10px;
     text-align: left;
-    
+
   }
-  
+
   .screenshots-container{
       display: flex;
       flex-wrap: wrap;
   }
-  
-  
+
+
   .screenshot-image {
     width: 200px;
     cursor: pointer; /* Ensure the cursor changes to indicate clickability */
     z-index: 1;      /* Make sure the image is on top */
   }
-  
+
   .frame {
     position: relative;
     width: 80%;
@@ -50,9 +50,9 @@
     flex: 1;
     display: flex;
     justify-content: center;
-  
+
   }
-  
+
   .loading-spinner {
     position: fixed;
     top: 0;
@@ -67,7 +67,7 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   .spinner {
     border: 8px solid rgba(0, 0, 0, 0.1);
     border-top: 8px solid #3498db;
@@ -76,7 +76,7 @@
     height: 60px;
     animation: spin 1s linear infinite;
   }
-  
+
   @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -85,12 +85,12 @@
       transform: rotate(360deg);
     }
   }
-  
+
   .left-container {
     border-right: 2px solid rgb(18, 20, 158);
     box-sizing: border-box;
   }
-  
+
   .right-container {
     box-sizing: border-box;
   }
@@ -107,13 +107,13 @@
         rgba(29, 78, 216, 0.1)
       );
     }
-    
+
     .search-section {
       display: flex;
       justify-content: center;
       padding: 1rem 0;
     }
-    
+
     .search-container {
       display: flex;
       gap: 1rem;
@@ -121,7 +121,7 @@
       max-width: 100%;
       width: 100%;
     }
-    
+
     .search-input {
       flex: 1;
       height: 3rem;
@@ -136,14 +136,14 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       backdrop-filter: blur(8px);
     }
-    
+
     .search-input:focus {
       background: #ffffff;
       border-color: #3b82f6;
       box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
       outline: none;
     }
-    
+
     .action-button {
       height: 3rem;
       padding: 0 1.5rem;
@@ -161,7 +161,7 @@
       justify-content: center;
       min-width: 120px;
     }
-    
+
     .action-button:hover {
       background: linear-gradient(
         135deg,
@@ -173,17 +173,17 @@
       box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
       transform: translateY(-1px);
     }
-    
+
     .button-content {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     .button-icon {
       font-size: 1.1rem;
     }
-    
+
     .preview-card {
       position: relative;
       background: rgba(255, 255, 255, 0.95);
@@ -196,7 +196,7 @@
       display: flex;
       flex-direction: column;
     }
-    
+
     .preview-card.expanded {
       position: absolute;
       top: 0;
@@ -205,7 +205,7 @@
       bottom: 0;
       z-index: 10;
     }
-    
+
     .expand-toggle {
       position: absolute;
       top: 1rem;
@@ -223,26 +223,26 @@
       transition: all 0.3s ease;
       z-index: 10;
     }
-    
+
     .expand-toggle:hover {
       background: #1e3a8a;
       color: white;
       box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
     }
-    
+
     .preview-content {
       flex: 1;
       display: flex;
       flex-direction: column;
     }
-    
+
     .preview-frame {
       flex: 1;
       width: 100%;
       border-radius: 1rem 1rem 0 0;
       background: white;
     }
-    
+
     .preview-footer {
       padding: 1rem;
       text-align: center;
@@ -250,24 +250,24 @@
       border-top: 1px solid rgba(30, 58, 138, 0.1);
       border-radius: 0 0 1rem 1rem;
     }
-    
+
     .preview-label {
       font-family: 'Outfit', sans-serif;
       font-weight: 500;
       color: #1e3a8a;
       font-size: 0.9rem;
     }
-    
+
     .inspect-section {
       display: flex;
       justify-content: center;
       padding: 1rem 0;
     }
-    
+
     .inspect-button {
       background: rgba(30, 58, 138, 0.05);
     }
-    
+
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -282,18 +282,18 @@
       visibility: visible !important; /* Force visibility for debugging */
       opacity: 1 !important;          /* Force opacity for debugging */
     }
-    
+
     .modal-content {
       background: white;
       padding: 20px;
       border-radius: 8px;
     }
-    
+
     @media (max-width: 768px) {
       .search-container {
         flex-direction: column;
       }
-    
+
       .action-button {
         width: 100%;
       }

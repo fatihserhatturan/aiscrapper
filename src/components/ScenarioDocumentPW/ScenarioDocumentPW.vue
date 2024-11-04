@@ -49,7 +49,7 @@
 
         <div class="page-viewer">
 
-            
+
             <h2 class="code-title">Ekran Görüntüleri</h2>
                     <p v-if="screenshots.length == 0"> Test sonucunda oluşan ekran görüntüleri burada yer alacaktır.</p>
                     <div v-if="screenshots.length > 0" class="screenshots-container">
@@ -62,7 +62,7 @@
                             />
                         </div>
                     </div>
-               
+
 
                 <div v-if="screenshots.length > 0" class="inspect-section">
                     <button @click="startAntropic" class="action-button inspect-button">
@@ -91,9 +91,15 @@
                             <span>Dokümanı İndir</span>
                         </span>
                     </button>
+                    <button @click="exportToDocx" class="action-button export-button">
+                        <span class="button-content">
+                            <span class="button-icon"><font-awesome-icon :icon="['fas', 'rotate']" /></span>
+                            <span>Azure ile eşitle</span>
+                        </span>
+                    </button>
                 </div>
 
-                
+
 
         </div>
         <div v-if="loadingTestScreen" class="loading-spinner">
@@ -112,7 +118,7 @@
       </div>
     </div>
 </template>
-  
+
 <script>
 import ScenarioDocumentPW from './ScenarioDocumentPW.ts';
 export default ScenarioDocumentPW;
